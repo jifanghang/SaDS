@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>gotoFailImpl.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">JaCoCoverage analysis of project &quot;SaDS_Assignments&quot; (powered by JaCoCo from EclEmma)</a> &gt; <a href="index.source.html" class="el_package">assignment1</a> &gt; <span class="el_source">gotoFailImpl.java</span></div><h1>gotoFailImpl.java</h1><pre class="source lang-java linenums">/*
+ * SaDS
+ * Assignment 1
+ * by Fanghang Ji
+ */
+package assignment1;
+
+<span class="nc" id="L8">public class gotoFailImpl {</span>
+<span class="fc" id="L9">    static OSStatus SSLHashSHA1 = new OSStatus();</span>
+    static SSLBuffer signedHashes, hashOut, hashCtx, serverRandom;
+
+    public static OSStatus SSLVerifySignedServerKeyExchange(SSLContext ctx, boolean isRsa, SSLBuffer signedParams, byte signature, byte signatureLen) {
+        OSStatus err;
+<span class="pc bpc" id="L14" title="1 of 2 branches missed.">        if ((err = SSLHashSHA1.update(hashCtx, serverRandom)).data != 0)</span>
+<span class="fc" id="L15">            fail(err);</span>
+<span class="pc bpc" id="L16" title="1 of 2 branches missed.">        if ((err = SSLHashSHA1.update(hashCtx, signedParams)).data != 0)</span>
+<span class="fc" id="L17">            fail(err);</span>
+<span class="fc" id="L18">            fail(err);</span>
+<span class="pc bpc" id="L19" title="1 of 2 branches missed.">        if ((err = SSLHashSHA1.finalx(hashCtx, hashOut)).data != 0)</span>
+<span class="fc" id="L20">            fail(err);</span>
+
+<span class="fc" id="L22">        return err;</span>
+    }
+    
+    public static void SSLFreeBuffer(SSLBuffer sslb) {
+        
+<span class="fc" id="L27">    }</span>
+
+    public static OSStatus fail(OSStatus err) {
+<span class="fc" id="L30">        SSLFreeBuffer(signedHashes);</span>
+<span class="fc" id="L31">        SSLFreeBuffer(hashCtx);</span>
+<span class="fc" id="L32">        System.out.println(&quot;goto fail called&quot;);</span>
+<span class="fc" id="L33">        return err;</span>
+    }
+
+    public static void main(String[] args) {
+<span class="fc" id="L37">        SSLContext ctx = new SSLContext();</span>
+<span class="fc" id="L38">        boolean isRsa = true;</span>
+<span class="fc" id="L39">        SSLBuffer signedParams = new SSLBuffer();</span>
+<span class="fc" id="L40">        byte signature = 0, signatureLen = 0;</span>
+        
+<span class="fc" id="L42">        SSLVerifySignedServerKeyExchange(ctx, isRsa, signedParams, signature, signatureLen);</span>
+        // TODO code application logic here
+<span class="fc" id="L44">    }</span>
+    
+}
+<span class="fc" id="L47">class SSLBuffer {</span>
+
+}
+
+class OSStatus {
+    public int data;
+    public SSLBuffer sslb;
+    
+<span class="fc" id="L55">    public OSStatus() {</span>
+<span class="fc" id="L56">        data = 1;</span>
+<span class="fc" id="L57">    }</span>
+<span class="nc" id="L58">    public OSStatus(int data, SSLBuffer sslb) {</span>
+<span class="nc" id="L59">        this.data = data;</span>
+<span class="nc" id="L60">        this.sslb = sslb;</span>
+<span class="nc" id="L61">    }</span>
+    
+    public OSStatus update(SSLBuffer sslb1, SSLBuffer sslb2) {
+<span class="fc" id="L64">        sslb1 = sslb2;</span>
+<span class="fc" id="L65">        return this;</span>
+    }
+    public OSStatus finalx(SSLBuffer sslb1, SSLBuffer sslb2) {
+<span class="fc" id="L68">        sslb1 = sslb2;</span>
+<span class="fc" id="L69">        return this;</span>
+    }
+    
+}
+
+<span class="fc" id="L74">class SSLContext {</span>
+    
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.5.201505241946</span></div></body></html>

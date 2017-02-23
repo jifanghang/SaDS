@@ -6,7 +6,7 @@
 package assignment1;
 
 public class gotoFailImpl {
-    static OSStatus SSLHashSHA1;
+    static OSStatus SSLHashSHA1 = new OSStatus();
     static SSLBuffer signedHashes, hashOut, hashCtx, serverRandom;
 
     public static OSStatus SSLVerifySignedServerKeyExchange(SSLContext ctx, boolean isRsa, SSLBuffer signedParams, byte signature, byte signatureLen) {
@@ -34,6 +34,12 @@ public class gotoFailImpl {
     }
 
     public static void main(String[] args) {
+        SSLContext ctx = new SSLContext();
+        boolean isRsa = true;
+        SSLBuffer signedParams = new SSLBuffer();
+        byte signature = 0, signatureLen = 0;
+        
+        SSLVerifySignedServerKeyExchange(ctx, isRsa, signedParams, signature, signatureLen);
         // TODO code application logic here
     }
     
@@ -47,7 +53,7 @@ class OSStatus {
     public SSLBuffer sslb;
     
     public OSStatus() {
-        data = 0;
+        data = 1;
     }
     public OSStatus(int data, SSLBuffer sslb) {
         this.data = data;
