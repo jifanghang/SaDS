@@ -1,0 +1,3 @@
+length(elements) == size
+
+Since only the operations inside the class (i.e. push(x: A), pop()) could perserve the truth of the value of 'size'. So it is a class invariant.
